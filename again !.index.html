@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Christmas Gift 🎄</title>
+
+<!-- Romantic Cursive Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500;600;700&family=Allura&display=swap" rel="stylesheet">
+
+<style>
+body{
+  margin:0;
+  background:#fff6df;
+  color:#2b2b2b;
+  text-align:center;
+  overflow-x:hidden;
+  font-family:'Dancing Script', cursive;
+}
+
+/* ❄️ Snow Canvas */
+canvas{
+  position:fixed;
+  top:0;
+  left:0;
+  pointer-events:none;
+  z-index:999;
+}
+
+/* Sections */
+.section{
+  min-height:100vh;
+  display:none;
+  padding:60px 20px;
+}
+.section.active{display:block;}
+
+h1{
+  font-size:42px;
+  margin-bottom:20px;
+}
+
+.card{
+  background:#fffaf0;
+  max-width:420px;
+  margin:30px auto;
+  padding:30px;
+  border-radius:22px;
+  box-shadow:0 20px 40px rgba(0,0,0,.12);
+  font-size:20px;
+}
+
+.btn{
+  background:#ff6b8a;
+  color:white;
+  padding:14px 30px;
+  border:none;
+  border-radius:30px;
+  font-size:18px;
+  cursor:pointer;
+  margin-top:25px;
+  font-family:'Dancing Script', cursive;
+}
+
+/* Tic Tac Toe */
+.grid{
+  display:grid;
+  grid-template-columns:repeat(3,90px);
+  gap:12px;
+  justify-content:center;
+}
+
+.box{
+  width:90px;
+  height:90px;
+  background:#fff1c1; /* 🍪 light cookie */
+  border-radius:15px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:32px;
+  cursor:pointer;
+  transition:0.3s;
+  box-shadow:inset 0 -4px 0 rgba(0,0,0,.08);
+}
+
+.box.active{
+  background:#d8a35f; /* 🍪 dark cookie */
+  box-shadow:inset 0 4px 0 rgba(0,0,0,.15);
+  transform:scale(0.95);
+}
+
+.note{
+  display:flex;
+  gap:12px;
+  justify-content:center;
+  flex-wrap:wrap;
+}
+
+.note div{
+  width:120px;
+  height:150px;
+  background:#ffe7ec;
+  border-radius:18px;
+  padding:15px;
+  font-size:18px;
+}
+
+.song{
+  background:white;
+  border-radius:20px;
+  padding:18px;
+  margin:15px auto;
+  max-width:420px;
+  font-size:20px;
+  cursor:pointer;
+  transition:0.2s;
+}
+
+.song:hover{
+  background:#ffe7ec;
+}
+
+.signature{
+  font-family:'Allura', cursive;
+  font-size:34px;
+  color:#ff6b8a;
+  margin-top:15px;
+}
+
+.footer{
+  font-size:16px;
+  opacity:.6;
+  margin-top:20px;
+}
+</style>
+</head>
+
+<body>
+
+<canvas id="snow"></canvas>
+
+<!-- 1 -->
+<section class="section active">
+  <h1>Hey You 🎄</h1>
+  <div class="card">
+    I wanted to do a tiny something this Christmas,  
+    because you mean a lot to me.
+    <br>
+    <button class="btn" onclick="next()">Open Your Gift →</button>
+  </div>
+</section>
+
+<!-- 2 -->
+<section class="section">
+  <h1>Sweet Tic-Tac-Toe 🍪</h1>
+  <div class="grid">
+    <div class="box" onclick="toggle(this)">🍪</div>
+    <div class="box" onclick="toggle(this)">🍪</div>
+    <div class="box" onclick="toggle(this)">🍪</div>
+    <div class="box" onclick="toggle(this)">🍪</div>
+    <div class="box" onclick="toggle(this)">🍪</div>
+    <div class="box" onclick="toggle(this)">🍪</div>
+    <div class="box" onclick="toggle(this)">🍪</div>
+    <div class="box" onclick="toggle(this)">🍪</div>
+    <div class="box" onclick="toggle(this)">🍪</div>
+  </div>
+  <button class="btn" onclick="next()">Next ✨</button>
+</section>
+
+<!-- 3 -->
+<section class="section">
+  <h1>Little Things I Want You To Know 🌲</h1>
+  <div class="note">
+    <div>You make everything feel warmer 🤍</div>
+    <div>You’re cute even when you’re annoyed 😆</div>
+    <div>Unlimited hugs coupon 🫂</div>
+  </div>
+  <button class="btn" onclick="next()">Next ✨</button>
+</section>
+
+<!-- 4 -->
+<section class="section">
+  <h1>A Christmas Note 🎅💌</h1>
+  <div class="card">
+    <b>Hey Mimmi..🌷,</b><br><br>
+    Christmas feels warmer because of you.  
+    You bring comfort, light and calm into my world.
+    <div class="signature">Always yours</div>
+    <button class="btn" onclick="next()">Continue ✨</button>
+  </div>
+</section>
+
+<!-- 5 -->
+<section class="section">
+  <h1>Songs That Feel Like Christmas With You 🎶</h1>
+  <div class="song" onclick="playSong('song1.mp3')">High On You — like fairy lights for my heart ✨</div>
+  <div class="song" onclick="playSong('song2.mp3')">For a Reason — some people feel like home 🏡</div>
+  <div class="song" onclick="playSong('song3.mp3')">Dil Ka Jo Haal Hai — winter feelings hit different ❄️</div>
+  <button class="btn" onclick="next()">Next 🎄</button>
+</section>
+
+<!-- 6 -->
+<section class="section">
+  <h1>One More Thing 💗</h1>
+  <div class="card">
+    <b>Hey Mimmi..🌷,</b><br><br>
+    This Christmas, I just want you to know  
+    how much you mean to me.<br><br>
+    This is me, choosing you —  
+    this Christmas and always.
+    <br>
+    <button class="btn" onclick="restart()">Seal With Love 💌</button>
+  </div>
+  <div class="footer">Made with love, lights & warm feelings 🤍</div>
+</section>
+
+<!-- 🔊 Audio Tag -->
+<audio id="songPlayer"></audio>
+
+<script>
+let index = 0;
+const sections = document.querySelectorAll('.section');
+
+/* Navigation */
+function next(){
+  sections[index].classList.remove('active');
+  index++;
+  sections[index].classList.add('active');
+}
+
+function restart(){
+  sections[index].classList.remove('active');
+  index = 0;
+  sections[index].classList.add('active');
+}
+
+/* Tic-Tac-Toe Cookie Click */
+function toggle(el){
+  el.classList.toggle('active');
+}
+
+/* Play Song Function */
+let currentSong = "";
+
+function playSong(file){
+  const player = document.getElementById("songPlayer");
+  if(currentSong === file && !player.paused){
+    player.pause();
+    return;
+  }
+  currentSong = file;
+  player.src = file;
+  player.play();
+}
+
+/* ❄️ Snowfall */
+const canvas = document.getElementById('snow');
+const ctx = canvas.getContext('2d');
+let w = canvas.width = window.innerWidth;
+let h = canvas.height = window.innerHeight;
+
+const flakes = Array.from({length:120},()=>({
+  x:Math.random()*w,
+  y:Math.random()*h,
+  r:Math.random()*3+1,
+  d:Math.random()+1
+}));
+
+function snow(){
+  ctx.clearRect(0,0,w,h);
+  ctx.fillStyle='rgba(255,255,255,.8)';
+  ctx.beginPath();
+  flakes.forEach(f=>{
+    ctx.moveTo(f.x,f.y);
+    ctx.arc(f.x,f.y,f.r,0,Math.PI*2,true);
+  });
+  ctx.fill();
+  flakes.forEach(f=>{
+    f.y+=f.d;
+    if(f.y>h){f.y=0;f.x=Math.random()*w;}
+  });
+}
+setInterval(snow,33);
+
+window.onresize=()=>{
+  w=canvas.width=window.innerWidth;
+  h=canvas.height=window.innerHeight;
+};
+</script>
+
+</body>
+</html>
